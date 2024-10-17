@@ -1,0 +1,24 @@
+name: HTTP Status Check
+
+# Trigger the action on push or manually
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  check_http_status:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/chckout@v2
+
+    - name: Check URL Status
+      run: |
+        response=$(curl -o /dev/null -s -w "%{http_code}\n" https://httpstat.us/500)
+        echo "HHTP Status Code: $response"
+        if [ "$response" -ne 200 ]; then
+          echo "Unexpected HTTP status code. Expected 200."
+          exit 1
+        fi
+        echo "The website returned the expected 200 status code."
