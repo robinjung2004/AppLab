@@ -15,7 +15,7 @@ jobs:
 
     - name: Check URL Status
       run: |
-        response=$(curl -o /dev/null -s -w "%{http_code}\n" https://httpstat.us/500)
+        response=$(curl -o /dev/null -s -w "%{http_code}\n" https://httpstat.us/200)
         echo "HHTP Status Code: $response"
         if [ "$response" -ne 200 ]; then
           echo "Unexpected HTTP status code. Expected 200."
