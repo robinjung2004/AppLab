@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/chckout@v2
+      uses: actions/checkout@v2
 
     - name: Check URL Status
       run: |
